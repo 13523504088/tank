@@ -1,6 +1,5 @@
 package com.mashibing.tank;
 
-import sun.awt.image.ByteBandedRaster;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(200,400,Dir.DOWN,this);
+    Tank myTank = new Tank(200,400,Dir.DOWN,Group.GOOD,this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> tanks = new ArrayList<Tank>();
 

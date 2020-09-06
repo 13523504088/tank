@@ -1,23 +1,36 @@
 package com.mashibing.tank;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Tank {
     private int x,y;
     private Dir dir = Dir.DOWN;
-    private static final int SPEED=5;
-    private boolean moving =false;
+    private static final int SPEED=1;
+    private boolean moving =true;
     private TankFrame tf = null;
     public static int WIDTH = ResourceMgr.tankD.getWidth();
     public static int HEIGHT = ResourceMgr.tankD.getHeight();
     private boolean living = true;
+    private Group group;
+    private Random random = new Random();
 
-    public Tank(int x, int y, Dir dir,TankFrame tf) {
+    public Tank(int x, int y, Dir dir,Group group,TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     public Dir getDir() {
         return dir;
     }
@@ -94,6 +107,9 @@ public class Tank {
             default:
                 break;
         }
+        if(random.nextInt() > 8){
+            this.fire();
+        }
     }
 
 
@@ -101,7 +117,7 @@ public class Tank {
     public void fire() {
         int bx = this.x + Tank.WIDTH/2  - Bullet.WIDTH/2;
         int by = this.y + Tank.HEIGHT/2  - Bullet.HEIGHT/2;
-        tf.bullets.add(new Bullet(bx,by, this.dir,tf));
+        tf.bullets.add(new Bullet(bx,by, this.dir,this.group,tf));
     }
 
     public void die() {
