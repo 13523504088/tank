@@ -23,5 +23,6 @@ public class Expload {
         if(step>=ResourceMgr.exploads.length){
             step=0;
         }
+        new Audio("audio/explode.wav").run();
     }
 }
